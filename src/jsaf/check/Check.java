@@ -1,11 +1,11 @@
 package jsaf.check;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import jsaf.Config;
 import jsaf.ast.ASTNode;
 import jsaf.ast.action.Choose;
 import jsaf.ast.action.Ident;
@@ -16,24 +16,7 @@ import jsaf.ast.fighter.Fighter;
 import jsaf.ast.fighter.Strength;
 import jsaf.ast.util.NoOpVisitor;
 
-public class Check extends NoOpVisitor {
-	private static final List<String> ATOMS =
-			Arrays.asList("near", "even", "far", "always", "stronger", "weaker", "much_stronger", "much_weaker");
-
-	private static final List<String> MOVES =
-			Arrays.asList("jump", "crouch", "stand", "run_towards", "run_away", "walk_towards", "walk_away");
-
-	private static final List<String> FIGHTS =
-			Arrays.asList("punch_low", "punch_high", "kick_low", "kick_high", "block_low", "block_high");
-
-	private static final List<String> STRENGTHS =
-			Arrays.asList("punchReach", "kickReach", "kickPower", "punchPower");
-
-	private static final Integer MIN_STRENGTH = 1;
-	private static final Integer MAX_STRENGTH = 10;
-
-
-
+public class Check extends NoOpVisitor implements Config {
 	public static List<Message> check(Fighter fighter) {
 		Check check = new Check();
 		fighter.accept(check);

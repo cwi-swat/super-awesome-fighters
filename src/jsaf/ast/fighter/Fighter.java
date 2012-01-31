@@ -2,13 +2,16 @@ package jsaf.ast.fighter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import jsaf.ast.ASTNode;
 import jsaf.ast.action.Ident;
 import jsaf.ast.util.Pair;
 import jsaf.ast.util.Visitor;
 
-public class Fighter extends ASTNode {
+public class Fighter extends ASTNode  {
+
+	private static final Integer DEFAULT_STRENGTH = 5;
 
 	private final String name;
 	private final List<Strength> strengths;
@@ -42,6 +45,15 @@ public class Fighter extends ASTNode {
 	
 	public List<Strength> getStrengths() {
 		return strengths;
+	}
+	
+	public Integer getStrength(String name) {
+		for (Strength strength: getStrengths()) {
+			if (name.equals(strength.getName())) {
+				return strength.getValue();
+			}
+		}
+		return DEFAULT_STRENGTH;
 	}
 	
 	@Override
