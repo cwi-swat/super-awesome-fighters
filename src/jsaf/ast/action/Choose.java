@@ -3,7 +3,6 @@ package jsaf.ast.action;
 import java.util.ArrayList;
 import java.util.List;
 
-import jsaf.ast.util.Ident;
 import jsaf.ast.util.Pair;
 import jsaf.ast.util.Visitor;
 

@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import jsaf.ast.ISemantic;
-import jsaf.ast.util.Ident;
+import jsaf.ast.action.Ident;
 import jsaf.ast.util.Int;
 
 

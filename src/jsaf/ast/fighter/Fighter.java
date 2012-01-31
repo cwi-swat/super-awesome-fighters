@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jsaf.ast.ASTNode;
-import jsaf.ast.util.Ident;
+import jsaf.ast.action.Ident;
 import jsaf.ast.util.Pair;
 import jsaf.ast.util.Visitor;
 

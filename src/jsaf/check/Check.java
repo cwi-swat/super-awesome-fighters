@@ -8,12 +8,12 @@ import java.util.Set;
 
 import jsaf.ast.ASTNode;
 import jsaf.ast.action.Choose;
+import jsaf.ast.action.Ident;
 import jsaf.ast.action.Simple;
 import jsaf.ast.cond.Atom;
 import jsaf.ast.fighter.Behavior;
 import jsaf.ast.fighter.Fighter;
 import jsaf.ast.fighter.Strength;
-import jsaf.ast.util.Ident;
 import jsaf.ast.util.NoOpVisitor;
 
 public class Check extends NoOpVisitor {

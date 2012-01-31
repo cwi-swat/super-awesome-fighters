@@ -1,6 +1,6 @@
 package jsaf.ast.cond;
 
-import jsaf.ast.util.Ident;
+import jsaf.ast.action.Ident;
 import jsaf.ast.util.Visitor;
 
 public class Atom extends Condition {

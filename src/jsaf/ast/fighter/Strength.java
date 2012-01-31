@@ -1,6 +1,6 @@
 package jsaf.ast.fighter;
 
-import jsaf.ast.util.Ident;
+import jsaf.ast.action.Ident;
 import jsaf.ast.util.Int;
 import jsaf.ast.util.Visitor;
 

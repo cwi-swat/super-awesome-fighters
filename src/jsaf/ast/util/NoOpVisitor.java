@@ -1,6 +1,7 @@
 package jsaf.ast.util;
 
 import jsaf.ast.action.Choose;
+import jsaf.ast.action.Ident;
 import jsaf.ast.action.Simple;
 import jsaf.ast.cond.And;
 import jsaf.ast.cond.Atom;

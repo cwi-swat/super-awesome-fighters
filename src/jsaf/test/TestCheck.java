@@ -1,22 +1,23 @@
 package jsaf.test;
 
+import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertNotNull;
+import static junit.framework.Assert.assertTrue;
+
 import java.io.File;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Collections;
 import java.util.List;
 
-import jsaf.ast.action.Action;
 import jsaf.ast.action.Choose;
+import jsaf.ast.action.Ident;
 import jsaf.ast.fighter.Fighter;
-import jsaf.ast.util.Ident;
 import jsaf.check.Check;
 import jsaf.check.Message;
 import jsaf.syntax.JSAF;
 
 import org.junit.Test;
-
-import static junit.framework.Assert.*;
 
 
 public class TestCheck {

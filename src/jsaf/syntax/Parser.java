@@ -2,11 +2,23 @@
 
 package jsaf.syntax;
 
-import jsaf.ast.*;
-import jsaf.ast.fighter.*;
-import jsaf.ast.util.*;
-import jsaf.ast.cond.*;
-import jsaf.ast.action.*;
+import jsaf.ast.ISemantic;
+import jsaf.ast.action.Action;
+import jsaf.ast.action.Choose;
+import jsaf.ast.action.Ident;
+import jsaf.ast.action.Simple;
+import jsaf.ast.cond.And;
+import jsaf.ast.cond.Atom;
+import jsaf.ast.cond.Condition;
+import jsaf.ast.cond.Or;
+import jsaf.ast.fighter.Behavior;
+import jsaf.ast.fighter.Def;
+import jsaf.ast.fighter.Fighter;
+import jsaf.ast.fighter.Strength;
+import jsaf.ast.util.Cons;
+import jsaf.ast.util.Int;
+import jsaf.ast.util.Nil;
+import jsaf.ast.util.Pair;
 
 class Parser implements Tokens {
     private int yyss = 100;

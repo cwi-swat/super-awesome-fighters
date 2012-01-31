@@ -1,6 +1,5 @@
 package jsaf.ast.action;
 
-import jsaf.ast.util.Ident;
 import jsaf.ast.util.Visitor;
 
 public class Simple extends Action {

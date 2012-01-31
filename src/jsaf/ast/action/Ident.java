@@ -1,6 +1,7 @@
-package jsaf.ast.util;
+package jsaf.ast.action;
 
 import jsaf.ast.ASTNode;
+import jsaf.ast.util.Visitor;
 
 public class Ident extends ASTNode {
 
