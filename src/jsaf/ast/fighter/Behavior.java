@@ -1,6 +1,7 @@
 package jsaf.ast.fighter;
 
 import jsaf.ast.action.Action;
+import jsaf.ast.cond.And;
 import jsaf.ast.cond.Condition;
 import jsaf.ast.util.Visitor;
 
@@ -41,5 +42,17 @@ public class Behavior extends Def {
 	public boolean isAlways() {
 		return getGuard().isAlways();
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof Behavior)) {
+			return false;
+		}
+		Behavior b = (Behavior)obj;
+		return getGuard().equals(b.getGuard()) &&
+				getMove().equals(b.getMove()) &&
+				getFight().equals(b.getFight());
+	}
+
 
 }

@@ -20,4 +20,12 @@ public class Ident extends ASTNode {
 		visitor.visit(this);
 	}
 	
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof Ident)) {
+			return false;
+		}
+		return getName().equals(((Ident)obj).getName());
+	}
+	
 }

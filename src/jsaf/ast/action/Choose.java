@@ -25,4 +25,12 @@ public class Choose extends Action {
 		visitor.visit(this);
 	}
 	
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof Choose)) {
+			return false;
+		}
+		return getActions().equals(((Choose)obj).getActions());
+	}
+	
 }

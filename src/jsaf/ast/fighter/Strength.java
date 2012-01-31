@@ -32,4 +32,13 @@ public class Strength extends Def {
 		visitor.visit(this);
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof Strength)) {
+			return false;
+		}
+		Strength s = (Strength)obj;
+		return getName().equals(s.getName()) &&
+				getValue().equals(s.getValue());
+	}
 }

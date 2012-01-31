@@ -58,5 +58,16 @@ public class Fighter extends ASTNode  {
 		visitor.visit(this);
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof Fighter)) {
+			return false;
+		}
+		Fighter f = (Fighter)obj;
+		return getName().equals(f.getName()) &&
+				getStrengths().equals(f.getStrengths()) &&
+				getBehaviors().equals(f.getBehaviors());
+				
+	}
 
 }

@@ -25,5 +25,14 @@ public class Atom extends Condition {
 	public boolean isAlways() {
 		return name.equals(ALWAYS);
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof Atom)) {
+			return false;
+		}
+		return getName().equals(((Atom)obj).getName());
+	}
+
 
 }

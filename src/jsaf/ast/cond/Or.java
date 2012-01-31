@@ -13,5 +13,15 @@ public class Or extends Connective {
 	public void accept(Visitor visitor) {
 		visitor.visit(this);
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof Or)) {
+			return false;
+		}
+		return getLhs().equals(((Or)obj).getLhs()) &&
+				 getRhs().equals(((Or)obj).getRhs()); 
+	}
+
 
 }

@@ -19,4 +19,11 @@ public class Simple extends Action {
 		visitor.visit(this);
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof Simple)) {
+			return false;
+		}
+		return getName().equals(((Simple)obj).getName());
+	}
 }
