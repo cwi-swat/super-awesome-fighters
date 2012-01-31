@@ -67,12 +67,22 @@ public class Check extends NoOpVisitor implements Config {
 		this.messages = new ArrayList<Message>();
 	}
 
+	
 	@Override
-	public void visit(Atom atom) {
-		if (!ATOMS.contains(atom.getName())) {
-			addMessage(new Error("invalid condition atom", atom));
+	public void visit(Fighter fighter) {
+		for (Strength strength: fighter.getStrengths()) {
+			strength.accept(this);
+		}
+		boolean always = false;
+		for (Behavior behavior: fighter.getBehaviors()) {
+			behavior.accept(this);
+			always |= behavior.isAlways();
+		}
+		if (!always) {
+			addMessage(new Error("missing 'always' behavior", fighter));
 		}
 	}
+
 
 	@Override
 	public void visit(Behavior behavior) {
@@ -91,6 +101,13 @@ public class Check extends NoOpVisitor implements Config {
 		}
 	}
 
+	@Override
+	public void visit(Atom atom) {
+		if (!ATOMS.contains(atom.getName())) {
+			addMessage(new Error("invalid condition atom", atom));
+		}
+	}
+	
 	private boolean isInBounds(Strength strength){
 		return MIN_STRENGTH <= strength.getValue()  
 				&& strength.getValue() <= MAX_STRENGTH;

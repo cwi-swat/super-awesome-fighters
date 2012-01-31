@@ -37,5 +37,9 @@ public class Behavior extends Def {
 	public void accept(Visitor visitor) {
 		visitor.visit(this);
 	}
+	
+	public boolean isAlways() {
+		return getGuard().isAlways();
+	}
 
 }

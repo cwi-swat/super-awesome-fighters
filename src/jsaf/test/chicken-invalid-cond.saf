@@ -7,5 +7,5 @@ chicken
   far [run_towards kick_low]
   
   nar [run_away kick_low]
-  near [crouch punch_low]
+  always [crouch punch_low]
 }

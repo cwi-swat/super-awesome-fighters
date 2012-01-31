@@ -105,4 +105,15 @@ public class TestCheck extends Load {
 		Ident a = ((Choose)f.getBehaviors().get(0).getMove()).getActions().get(1);
 		assertEquals(a, error.getNode());
 	}
+	
+	@Test
+	public void testNoAlways() {
+		Fighter f = load("kicking-no-always.saf");
+		List<Message> errs = Check.check(f);
+		assertEquals(1, errs.size());
+		Message error = errs.get(0);
+		assertTrue(error instanceof jsaf.check.Error);
+		assertNotNull(error.getMessage().matches("missing 'always'"));
+		assertEquals(f, error.getNode());
+	}
 }
