@@ -6,51 +6,109 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import jsaf.ast.ASTNode;
 import jsaf.ast.action.Choose;
 import jsaf.ast.action.Simple;
 import jsaf.ast.cond.Atom;
 import jsaf.ast.fighter.Behavior;
 import jsaf.ast.fighter.Fighter;
 import jsaf.ast.fighter.Strength;
+import jsaf.ast.util.Ident;
 import jsaf.ast.util.NoOpVisitor;
 
 public class Check extends NoOpVisitor {
 	private static final List<String> ATOMS =
-		Arrays.asList("near", "even", "far", "always", "stronger", "weaker", "much_stronger", "much_weaker");
-	
+			Arrays.asList("near", "even", "far", "always", "stronger", "weaker", "much_stronger", "much_weaker");
+
 	private static final List<String> MOVES =
 			Arrays.asList("jump", "crouch", "stand", "run_towards", "run_away", "walk_towards", "walk_away");
 
 	private static final List<String> FIGHTS =
 			Arrays.asList("punch_low", "punch_high", "kick_low", "kick_high", "block_low", "block_high");
-	
+
 	private static final List<String> STRENGTHS =
 			Arrays.asList("punchReach", "kickReach", "kickPower", "punchPower");
 
 	private static final Integer MIN_STRENGTH = 1;
 	private static final Integer MAX_STRENGTH = 10;
-	
-	
-	private final List<Message> messages;
+
+
 
 	public static List<Message> check(Fighter fighter) {
 		Check check = new Check();
 		fighter.accept(check);
 		return check.messages;
 	}
-	
+
+	private final List<Message> messages;
+
+	private class ConditionChecker extends NoOpVisitor {
+		@Override
+		public void visit(Ident ident) {
+			if (!FIGHTS.contains(ident.getName())) {
+				addMessage(new Error("invalid fight", ident));
+			}
+		}
+	}
+
+
+	private class ActionChecker extends NoOpVisitor {
+		@Override
+		public void visit(Choose choose) {
+			Set<String> seen = new HashSet<String>();
+			for (Ident action: choose.getActions()) {
+				if (seen.contains(action.getName())) {
+					addMessage(new Warning("duplicate action", action));
+				}
+				seen.add(action.getName());
+				action.accept(this);
+			}
+		}
+	}
+
+
+	private class FightChecker extends ActionChecker {
+		@Override
+		public void visit(Simple simple) {
+			checkFight(simple.getName(), simple);
+		}
+
+		@Override
+		public void visit(Ident ident) {
+			checkFight(ident.getName(), ident);
+		}
+
+		private void checkFight(String name, ASTNode node) {
+			if (!FIGHTS.contains(name)) {
+				addMessage(new Error("invalid fight", node));
+			}
+		}
+	}
+
+	private class MoveChecker extends ActionChecker {
+		@Override
+		public void visit(Simple simple) {
+			checkMove(simple.getName(), simple);
+		}
+
+		public void visit(Ident ident) {
+			checkMove(ident.getName(), ident);
+		}
+
+		private void checkMove(String name, ASTNode node) {
+			if (!MOVES.contains(name)) {
+				addMessage(new Error("invalid move", node));
+			}
+		}
+	}
+
 	private Check() {
 		this.messages = new ArrayList<Message>();
 	}
-	
-	@Override
+
 	public void visit(Choose choose) {
-		Set<String> actions = new HashSet<String>();
-		for (String action: choose.getActions()) {
-			if (actions.contains(action)) {
-				messages.add(new Warning("Duplicate action in choose", choose));
-			}
-			actions.add(action);
+		for (Ident action: choose.getActions()) {
+			action.accept(new ConditionChecker());
 		}
 	}
 
@@ -59,25 +117,7 @@ public class Check extends NoOpVisitor {
 		if (!ATOMS.contains(atom.getName())) {
 			addMessage(new Error("invalid condition atom", atom));
 		}
-		
-	}
-	
-	private class FightChecker extends NoOpVisitor {
-		@Override
-		public void visit(Simple simple) {
-			if (!FIGHTS.contains(simple.getName())) {
-				addMessage(new Error("invalid fight", simple));
-			}
-		}
-	}
-	
-	private class MoveChecker extends NoOpVisitor {
-		@Override
-		public void visit(Simple simple) {
-			if (!MOVES.contains(simple.getName())) {
-				addMessage(new Error("invalid move", simple));
-			}
-		}
+
 	}
 
 	@Override

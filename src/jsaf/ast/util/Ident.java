@@ -1,8 +1,8 @@
 package jsaf.ast.util;
 
-import jsaf.ast.ISemantic;
+import jsaf.ast.ASTNode;
 
-public class Ident implements ISemantic {
+public class Ident extends ASTNode {
 
 	private final String name;
 	
@@ -12,6 +12,16 @@ public class Ident implements ISemantic {
 
 	public Ident(String name) {
 		this.name = name;
+	}
+
+	@Override
+	public void accept(Visitor visitor) {
+		visitor.visit(this);
+	}
+	
+	@Override
+	public String toString() {
+		return getName();
 	}
 
 }

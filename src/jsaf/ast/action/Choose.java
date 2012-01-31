@@ -9,16 +9,16 @@ import jsaf.ast.util.Visitor;
 
 public class Choose extends Action {
 
-	private final List<String> actions;
+	private final List<Ident> actions;
 
 	public Choose(Pair<Ident> actions) {
-		this.actions = new ArrayList<String>();
+		this.actions = new ArrayList<Ident>();
 		for (Ident ident: actions) {
-			this.actions.add(ident.getName());
+			this.actions.add(ident);
 		}
 	}
 	
-	public List<String> getActions() {
+	public List<Ident> getActions() {
 		return actions;
 	}
 	

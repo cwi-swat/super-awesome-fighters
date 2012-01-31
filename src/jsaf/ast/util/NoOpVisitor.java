@@ -13,6 +13,9 @@ public abstract class NoOpVisitor implements Visitor {
 
 	@Override
 	public void visit(Choose choose) {
+		for (Ident ident: choose.getActions()) {
+			ident.accept(this);
+		}
 	}
 
 	@Override
