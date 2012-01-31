@@ -5,6 +5,10 @@ package jsaf.syntax;
 import jsaf.ast.*;
 import jsaf.ast.util.*;
 import jsaf.ast.cond.*;
+import jsaf.ast.fighter.Behavior;
+import jsaf.ast.fighter.Def;
+import jsaf.ast.fighter.Fighter;
+import jsaf.ast.fighter.Strength;
 import jsaf.ast.action.*;
 
 class Parser implements Tokens {

@@ -3,9 +3,9 @@ package jsaf.ast.action;
 import java.util.ArrayList;
 import java.util.List;
 
-import jsaf.ast.Ident;
-import jsaf.ast.Visitor;
+import jsaf.ast.util.Ident;
 import jsaf.ast.util.Pair;
+import jsaf.ast.util.Visitor;
 
 public class Choose extends Action {
 

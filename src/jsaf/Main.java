@@ -2,7 +2,7 @@ package jsaf;
 
 import java.io.InputStreamReader;
 
-import jsaf.ast.Fighter;
+import jsaf.ast.fighter.Fighter;
 import jsaf.syntax.JSAF;
 
 public class Main {

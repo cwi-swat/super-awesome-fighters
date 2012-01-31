@@ -1,7 +1,8 @@
-package jsaf.ast;
+package jsaf.ast.fighter;
 
 import jsaf.ast.action.Action;
 import jsaf.ast.cond.Condition;
+import jsaf.ast.util.Visitor;
 
 public class Behavior extends Def {
 	

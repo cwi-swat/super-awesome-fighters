@@ -1,4 +1,8 @@
-package jsaf.ast;
+package jsaf.ast.fighter;
+
+import jsaf.ast.util.Ident;
+import jsaf.ast.util.Int;
+import jsaf.ast.util.Visitor;
 
 public class Strength extends Def {
 

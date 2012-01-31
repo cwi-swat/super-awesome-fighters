@@ -6,8 +6,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import jsaf.ast.ISemantic;
-import jsaf.ast.Ident;
-import jsaf.ast.Int;
+import jsaf.ast.util.Ident;
+import jsaf.ast.util.Int;
 
 
 public class Lexer implements Tokens {

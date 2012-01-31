@@ -1,10 +1,13 @@
-package jsaf.ast;
+package jsaf.ast.util;
 
 import jsaf.ast.action.Choose;
 import jsaf.ast.action.Simple;
 import jsaf.ast.cond.And;
 import jsaf.ast.cond.Atom;
 import jsaf.ast.cond.Or;
+import jsaf.ast.fighter.Behavior;
+import jsaf.ast.fighter.Fighter;
+import jsaf.ast.fighter.Strength;
 
 public interface Visitor {
 	public void visit(Choose choose);

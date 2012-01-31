@@ -1,9 +1,12 @@
-package jsaf.ast;
+package jsaf.ast.fighter;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import jsaf.ast.ASTNode;
+import jsaf.ast.util.Ident;
 import jsaf.ast.util.Pair;
+import jsaf.ast.util.Visitor;
 
 public class Fighter extends ASTNode {
 

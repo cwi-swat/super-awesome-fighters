@@ -2,7 +2,7 @@ package jsaf.syntax;
 
 import java.io.Reader;
 
-import jsaf.ast.Fighter;
+import jsaf.ast.fighter.Fighter;
 
 public class JSAF {
 	public static Fighter parse(Reader input) {

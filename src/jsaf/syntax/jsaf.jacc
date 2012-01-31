@@ -22,6 +22,7 @@
 
 %{
 import jsaf.ast.*;
+import jsaf.ast.fighter.*;
 import jsaf.ast.util.*;
 import jsaf.ast.cond.*;
 import jsaf.ast.action.*;
