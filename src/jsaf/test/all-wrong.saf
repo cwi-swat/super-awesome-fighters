@@ -1,0 +1,6 @@
+Challenging { 
+  kickReach = 15 
+  sronger [choose(jump run_away) choose(kick_low block_low)] 
+  far or much_weakr [choose(crouch crouch) choose(punch_lo punch_hig)] 
+  alway [crouch kick_ow]
+}

@@ -116,4 +116,11 @@ public class TestCheck extends Load {
 		assertNotNull(error.getMessage().matches("missing 'always'"));
 		assertEquals(f, error.getNode());
 	}
+	
+	@Test
+	public void testManyErrors() {
+		Fighter f = load("all-wrong.saf");
+		List<Message> errs = Check.check(f);
+		assertEquals(9, errs.size());
+	}	
 }
