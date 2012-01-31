@@ -5,7 +5,7 @@ import java.io.Reader;
 import java.util.HashMap;
 import java.util.Map;
 
-import jsaf.ast.ASTNode;
+import jsaf.ast.ISemantic;
 import jsaf.ast.Ident;
 import jsaf.ast.Int;
 
@@ -18,7 +18,7 @@ public class Lexer implements Tokens {
 		KEYWORDS.put("or", OR);
 	}
 	
-	private ASTNode yyval;
+	private ISemantic yyval;
 	private int token;
 	private final Reader input;
 	private int c = ' ';
@@ -97,7 +97,7 @@ public class Lexer implements Tokens {
 		return token;
 	}
 
-	public ASTNode getSemantic() {
+	public ISemantic getSemantic() {
 		return yyval;
 	}
 

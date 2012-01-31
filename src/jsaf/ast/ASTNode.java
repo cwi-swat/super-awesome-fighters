@@ -1,5 +1,7 @@
 package jsaf.ast;
 
-public interface ASTNode {
+public abstract class ASTNode implements ISemantic {
+
+	public abstract void accept(Visitor visitor);
 
 }

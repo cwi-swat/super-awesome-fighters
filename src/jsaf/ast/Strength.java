@@ -27,4 +27,10 @@ public class Strength extends Def {
 	public String toString() {
 		return getName() + " = " + getValue();
 	}
+	
+	@Override
+	public void accept(Visitor visitor) {
+		visitor.visit(this);
+	}
+
 }

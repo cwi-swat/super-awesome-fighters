@@ -3,9 +3,9 @@ package jsaf.ast.util;
 import java.util.Collections;
 import java.util.Iterator;
 
-import jsaf.ast.ASTNode;
+import jsaf.ast.ISemantic;
 
-public class Nil<X extends ASTNode> extends Pair<X> {
+public class Nil<X extends ISemantic> extends Pair<X> {
 
 	@Override
 	public Iterator<X> iterator() {

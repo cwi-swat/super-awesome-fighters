@@ -1,5 +1,7 @@
 package jsaf.ast.cond;
 
+import jsaf.ast.Visitor;
+
 
 public class And extends Connective {
 
@@ -10,6 +12,11 @@ public class And extends Connective {
 	@Override
 	public String toString() {
 		return getLhs() + " and " + getRhs();
+	}
+
+	@Override
+	public void accept(Visitor visitor) {
+		visitor.visit(this);
 	}
 
 }

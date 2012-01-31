@@ -1,7 +1,7 @@
 %package jsaf.syntax
 %class Parser
 %interface Tokens
-%semantic ASTNode 
+%semantic ISemantic 
 %start fighter
 
 %token INTEGER IDENT
@@ -14,7 +14,7 @@
 %type <Ident> IDENT 
 
 %type <Fighter> fighter
-%type <Choose> action
+%type <Action> action
 %type <Pair> actions
 %type <Pair> defs
 %type <Def> def
@@ -46,7 +46,7 @@ import jsaf.ast.action.*;
           | condition OR condition { $$ = new Or($1, $3); }
           ;
  
- action: IDENT { $$ = new Choose(new Cons<Ident>($1)); }
+ action: IDENT { $$ = new Simple($1); }
        | CHOOSE '(' actions ')' { $$ = new Choose($3); }
        ;
        

@@ -2,9 +2,9 @@ package jsaf.ast.util;
 
 import java.util.Iterator;
 
-import jsaf.ast.ASTNode;
+import jsaf.ast.ISemantic;
 
-public class Cons<X extends ASTNode> extends Pair<X> {
+public class Cons<X extends ISemantic> extends Pair<X> {
 	private final X head;
 	private final Pair<X> tail;
 

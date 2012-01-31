@@ -5,7 +5,7 @@ import java.util.List;
 
 import jsaf.ast.util.Pair;
 
-public class Fighter implements ASTNode {
+public class Fighter extends ASTNode {
 
 	private final Ident name;
 	private final List<Strength> strengths;
@@ -52,5 +52,11 @@ public class Fighter implements ASTNode {
 		}
 		return s + "}";
 	}
+	
+	@Override
+	public void accept(Visitor visitor) {
+		visitor.visit(this);
+	}
+
 
 }

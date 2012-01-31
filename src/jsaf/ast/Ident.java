@@ -1,6 +1,6 @@
 package jsaf.ast;
 
-public class Ident implements ASTNode {
+public class Ident extends ASTNode {
 
 	private final String name;
 	
@@ -17,4 +17,10 @@ public class Ident implements ASTNode {
 	public String toString() {
 		return getName();
 	}
+	
+	@Override
+	public void accept(Visitor visitor) {
+		visitor.visit(this);
+	}
+
 }

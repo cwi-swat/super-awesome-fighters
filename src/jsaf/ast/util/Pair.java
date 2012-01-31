@@ -1,7 +1,7 @@
 package jsaf.ast.util;
 
-import jsaf.ast.ASTNode;
+import jsaf.ast.ISemantic;
 
-public abstract class Pair<X extends ASTNode> implements ASTNode, Iterable<X> {
+public abstract class Pair<X extends ISemantic> implements ISemantic, Iterable<X> {
 
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jsaf.ast.Ident;
+import jsaf.ast.Visitor;
 import jsaf.ast.util.Pair;
 
 public class Choose extends Action {
@@ -31,6 +32,11 @@ public class Choose extends Action {
 			}
 		}
 		return "choose(" + s + ")";
+	}
+
+	@Override
+	public void accept(Visitor visitor) {
+		visitor.visit(this);
 	}
 	
 }

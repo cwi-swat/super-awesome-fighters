@@ -1,6 +1,7 @@
 package jsaf.ast.cond;
 
 import jsaf.ast.Ident;
+import jsaf.ast.Visitor;
 
 public class Atom extends Condition {
 	
@@ -17,6 +18,11 @@ public class Atom extends Condition {
 	@Override
 	public String toString() {
 		return getName().toString();
+	}
+
+	@Override
+	public void accept(Visitor visitor) {
+		visitor.visit(this);
 	}
 
 }

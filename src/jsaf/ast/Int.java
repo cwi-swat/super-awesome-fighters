@@ -1,6 +1,6 @@
 package jsaf.ast;
 
-public class Int implements ASTNode {
+public class Int extends ASTNode {
 
 	private final Integer value;
 
@@ -15,6 +15,11 @@ public class Int implements ASTNode {
 	@Override
 	public String toString() {
 		return value.toString();
+	}
+
+	@Override
+	public void accept(Visitor visitor) {
+		visitor.visit(this);
 	}
 
 }

@@ -1,4 +1,4 @@
-// Output created by jacc on Tue Jan 31 16:14:16 CET 2012
+// Output created by jacc on Tue Jan 31 16:28:35 CET 2012
 
 package jsaf.syntax;
 
@@ -13,14 +13,14 @@ class Parser implements Tokens {
     private int yysp = 0;
     private int[] yyst;
     protected int yyerrno = (-1);
-    private ASTNode[] yysv;
-    private ASTNode yyrv;
+    private ISemantic[] yysv;
+    private ISemantic yyrv;
 
     public boolean parse() {
         int yyn = 0;
         yysp = 0;
         yyst = new int[yyss];
-        yysv = new ASTNode[yyss];
+        yysv = new ISemantic[yyss];
         yytok = (lexer.getToken()
                  );
     loop:
@@ -537,7 +537,7 @@ class Parser implements Tokens {
 
     protected void yyexpand() {
         int[] newyyst = new int[2*yyst.length];
-        ASTNode[] newyysv = new ASTNode[2*yyst.length];
+        ISemantic[] newyysv = new ISemantic[2*yyst.length];
         for (int i=0; i<yyst.length; i++) {
             newyyst[i] = yyst[i];
             newyysv[i] = yysv[i];
@@ -604,7 +604,7 @@ class Parser implements Tokens {
     }
 
     private int yyr5() { // def : condition '[' action action ']'
-        { yyrv = new Behavior(((Condition)yysv[yysp-5]), ((Choose)yysv[yysp-3]), ((Choose)yysv[yysp-2])); }
+        { yyrv = new Behavior(((Condition)yysv[yysp-5]), ((Action)yysv[yysp-3]), ((Action)yysv[yysp-2])); }
         yysv[yysp-=5] = yyrv;
         return 5;
     }
@@ -629,7 +629,7 @@ class Parser implements Tokens {
     }
 
     private int yyr9() { // action : IDENT
-        { yyrv = new Choose(new Cons<Ident>(((Ident)yysv[yysp-1]))); }
+        { yyrv = new Simple(((Ident)yysv[yysp-1])); }
         yysv[yysp-=1] = yyrv;
         return yypaction();
     }
