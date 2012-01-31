@@ -11,5 +11,4 @@ public class Warning extends Message {
 	public String toString() {
 		return "WARNING: " + super.toString();
 	}
-
 }

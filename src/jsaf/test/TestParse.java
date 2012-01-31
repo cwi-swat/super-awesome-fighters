@@ -6,17 +6,23 @@ import jsaf.ast.cond.Condition;
 import jsaf.ast.cond.Or;
 import jsaf.ast.fighter.Fighter;
 
+import org.junit.Before;
 import org.junit.Test;
 import static junit.framework.Assert.*;
 
 public class TestParse extends Load {
 
+	private Fighter fighter;
+
+	@Before
+	public void setup() {
+		this.fighter = load("precedence.saf");
+	}
 	
 	@Test
 	public void testAndLeftAssoc() {
-		Fighter f = load("precedence.saf");
-		assertNotNull(f);
-		Condition c = f.getBehaviors().get(0).getGuard();
+		assertNotNull(fighter);
+		Condition c = fighter.getBehaviors().get(0).getGuard();
 		assertEquals(And.class, c.getClass());
 		assertEquals(And.class, ((And)c).getLhs().getClass());
 		assertEquals(Atom.class, ((And)c).getRhs().getClass());
@@ -25,9 +31,7 @@ public class TestParse extends Load {
 
 	@Test
 	public void testOrLeftAssoc() {
-		Fighter f = load("precedence.saf");
-		assertNotNull(f);
-		Condition c = f.getBehaviors().get(1).getGuard();
+		Condition c = fighter.getBehaviors().get(1).getGuard();
 		assertEquals(Or.class, c.getClass());
 		assertEquals(Or.class, ((Or)c).getLhs().getClass());
 		assertEquals(Atom.class, ((Or)c).getRhs().getClass());
@@ -36,9 +40,7 @@ public class TestParse extends Load {
 	
 	@Test
 	public void testAndStrongerThanOrLeft() {
-		Fighter f = load("precedence.saf");
-		assertNotNull(f);
-		Condition c = f.getBehaviors().get(2).getGuard();
+		Condition c = fighter.getBehaviors().get(2).getGuard();
 		assertEquals(Or.class, c.getClass());
 		assertEquals(And.class, ((Or)c).getLhs().getClass());
 		assertEquals(Atom.class, ((Or)c).getRhs().getClass());
@@ -46,9 +48,7 @@ public class TestParse extends Load {
 	
 	@Test
 	public void testAndStrongerThanOrRight() {
-		Fighter f = load("precedence.saf");
-		assertNotNull(f);
-		Condition c = f.getBehaviors().get(3).getGuard();
+		Condition c = fighter.getBehaviors().get(3).getGuard();
 		assertEquals(Or.class, c.getClass());
 		assertEquals(Atom.class, ((Or)c).getLhs().getClass());
 		assertEquals(And.class, ((Or)c).getRhs().getClass());
@@ -56,9 +56,7 @@ public class TestParse extends Load {
 	
 	@Test
 	public void testBracketAnds() {
-		Fighter f = load("precedence.saf");
-		assertNotNull(f);
-		Condition c = f.getBehaviors().get(4).getGuard();
+		Condition c = fighter.getBehaviors().get(4).getGuard();
 		assertEquals(Or.class, c.getClass());
 		assertEquals(And.class, ((Or)c).getLhs().getClass());
 		assertEquals(And.class, ((Or)c).getRhs().getClass());
@@ -66,9 +64,7 @@ public class TestParse extends Load {
 	
 	@Test
 	public void testNoBracketAnds() {
-		Fighter f = load("precedence.saf");
-		assertNotNull(f);
-		Condition c = f.getBehaviors().get(5).getGuard();
+		Condition c = fighter.getBehaviors().get(5).getGuard();
 		assertEquals(Or.class, c.getClass());
 		assertEquals(And.class, ((Or)c).getLhs().getClass());
 		assertEquals(And.class, ((Or)c).getRhs().getClass());
@@ -76,9 +72,7 @@ public class TestParse extends Load {
 	
 	@Test
 	public void testAndStrongerLeftRight() {
-		Fighter f = load("precedence.saf");
-		assertNotNull(f);
-		Condition c = f.getBehaviors().get(6).getGuard();
+		Condition c = fighter.getBehaviors().get(6).getGuard();
 		assertEquals(Or.class, c.getClass());
 		assertEquals(Or.class, ((Or)c).getLhs().getClass());
 		assertEquals(Atom.class, ((Or)((Or)c).getLhs()).getLhs().getClass());
@@ -88,9 +82,7 @@ public class TestParse extends Load {
 	
 	@Test
 	public void testBracketOrs() {
-		Fighter f = load("precedence.saf");
-		assertNotNull(f);
-		Condition c = f.getBehaviors().get(7).getGuard();
+		Condition c = fighter.getBehaviors().get(7).getGuard();
 		assertEquals(And.class, c.getClass());
 		assertEquals(Or.class, ((And)c).getLhs().getClass());
 		assertEquals(Or.class, ((And)c).getRhs().getClass());
