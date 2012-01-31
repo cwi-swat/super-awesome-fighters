@@ -2,7 +2,6 @@ package jsaf.ast.fighter;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import jsaf.ast.ASTNode;
 import jsaf.ast.action.Ident;
