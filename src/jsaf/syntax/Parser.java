@@ -1,24 +1,12 @@
-// Output created by jacc on Tue Jan 31 16:31:27 CET 2012
+// Output created by jacc on Tue Jan 31 22:10:02 CET 2012
 
 package jsaf.syntax;
 
-import jsaf.ast.ISemantic;
-import jsaf.ast.action.Action;
-import jsaf.ast.action.Choose;
-import jsaf.ast.action.Ident;
-import jsaf.ast.action.Simple;
-import jsaf.ast.cond.And;
-import jsaf.ast.cond.Atom;
-import jsaf.ast.cond.Condition;
-import jsaf.ast.cond.Or;
-import jsaf.ast.fighter.Behavior;
-import jsaf.ast.fighter.Def;
-import jsaf.ast.fighter.Fighter;
-import jsaf.ast.fighter.Strength;
-import jsaf.ast.util.Cons;
-import jsaf.ast.util.Int;
-import jsaf.ast.util.Nil;
-import jsaf.ast.util.Pair;
+import jsaf.ast.*;
+import jsaf.ast.fighter.*;
+import jsaf.ast.util.*;
+import jsaf.ast.cond.*;
+import jsaf.ast.action.*;
 
 class Parser implements Tokens {
     private int yyss = 100;
@@ -44,13 +32,13 @@ class Parser implements Tokens {
                     if (++yysp>=yyst.length) {
                         yyexpand();
                     }
-                case 28:
+                case 31:
                     switch (yytok) {
                         case IDENT:
                             yyn = 2;
                             continue;
                     }
-                    yyn = 59;
+                    yyn = 65;
                     continue;
 
                 case 1:
@@ -58,13 +46,13 @@ class Parser implements Tokens {
                     if (++yysp>=yyst.length) {
                         yyexpand();
                     }
-                case 29:
+                case 32:
                     switch (yytok) {
                         case ENDINPUT:
-                            yyn = 56;
+                            yyn = 62;
                             continue;
                     }
-                    yyn = 59;
+                    yyn = 65;
                     continue;
 
                 case 2:
@@ -76,13 +64,13 @@ class Parser implements Tokens {
                     if (++yysp>=yyst.length) {
                         yyexpand();
                     }
-                case 30:
+                case 33:
                     switch (yytok) {
                         case '{':
                             yyn = 3;
                             continue;
                     }
-                    yyn = 59;
+                    yyn = 65;
                     continue;
 
                 case 3:
@@ -94,16 +82,19 @@ class Parser implements Tokens {
                     if (++yysp>=yyst.length) {
                         yyexpand();
                     }
-                case 31:
+                case 34:
                     switch (yytok) {
                         case IDENT:
                             yyn = 7;
+                            continue;
+                        case '(':
+                            yyn = 8;
                             continue;
                         case '}':
                             yyn = yyr3();
                             continue;
                     }
-                    yyn = 59;
+                    yyn = 65;
                     continue;
 
                 case 4:
@@ -111,19 +102,19 @@ class Parser implements Tokens {
                     if (++yysp>=yyst.length) {
                         yyexpand();
                     }
-                case 32:
+                case 35:
                     switch (yytok) {
                         case AND:
-                            yyn = 8;
-                            continue;
-                        case OR:
                             yyn = 9;
                             continue;
-                        case '[':
+                        case OR:
                             yyn = 10;
                             continue;
+                        case '[':
+                            yyn = 11;
+                            continue;
                     }
-                    yyn = 59;
+                    yyn = 65;
                     continue;
 
                 case 5:
@@ -131,16 +122,19 @@ class Parser implements Tokens {
                     if (++yysp>=yyst.length) {
                         yyexpand();
                     }
-                case 33:
+                case 36:
                     switch (yytok) {
                         case IDENT:
                             yyn = 7;
+                            continue;
+                        case '(':
+                            yyn = 8;
                             continue;
                         case '}':
                             yyn = yyr3();
                             continue;
                     }
-                    yyn = 59;
+                    yyn = 65;
                     continue;
 
                 case 6:
@@ -148,13 +142,13 @@ class Parser implements Tokens {
                     if (++yysp>=yyst.length) {
                         yyexpand();
                     }
-                case 34:
+                case 37:
                     switch (yytok) {
                         case '}':
-                            yyn = 12;
+                            yyn = 13;
                             continue;
                     }
-                    yyn = 59;
+                    yyn = 65;
                     continue;
 
                 case 7:
@@ -166,10 +160,10 @@ class Parser implements Tokens {
                     if (++yysp>=yyst.length) {
                         yyexpand();
                     }
-                case 35:
+                case 38:
                     switch (yytok) {
                         case '=':
-                            yyn = 13;
+                            yyn = 14;
                             continue;
                         case '[':
                         case OR:
@@ -177,7 +171,7 @@ class Parser implements Tokens {
                             yyn = yyr6();
                             continue;
                     }
-                    yyn = 59;
+                    yyn = 65;
                     continue;
 
                 case 8:
@@ -189,13 +183,16 @@ class Parser implements Tokens {
                     if (++yysp>=yyst.length) {
                         yyexpand();
                     }
-                case 36:
+                case 39:
                     switch (yytok) {
+                        case '(':
+                            yyn = 8;
+                            continue;
                         case IDENT:
-                            yyn = 15;
+                            yyn = 16;
                             continue;
                     }
-                    yyn = 59;
+                    yyn = 65;
                     continue;
 
                 case 9:
@@ -207,13 +204,16 @@ class Parser implements Tokens {
                     if (++yysp>=yyst.length) {
                         yyexpand();
                     }
-                case 37:
+                case 40:
                     switch (yytok) {
+                        case '(':
+                            yyn = 8;
+                            continue;
                         case IDENT:
-                            yyn = 15;
+                            yyn = 16;
                             continue;
                     }
-                    yyn = 59;
+                    yyn = 65;
                     continue;
 
                 case 10:
@@ -225,34 +225,20 @@ class Parser implements Tokens {
                     if (++yysp>=yyst.length) {
                         yyexpand();
                     }
-                case 38:
+                case 41:
                     switch (yytok) {
-                        case CHOOSE:
-                            yyn = 18;
+                        case '(':
+                            yyn = 8;
                             continue;
                         case IDENT:
-                            yyn = 19;
+                            yyn = 16;
                             continue;
                     }
-                    yyn = 59;
+                    yyn = 65;
                     continue;
 
                 case 11:
                     yyst[yysp] = 11;
-                    if (++yysp>=yyst.length) {
-                        yyexpand();
-                    }
-                case 39:
-                    switch (yytok) {
-                        case '}':
-                            yyn = yyr2();
-                            continue;
-                    }
-                    yyn = 59;
-                    continue;
-
-                case 12:
-                    yyst[yysp] = 12;
                     yysv[yysp] = (lexer.getSemantic()
                                  );
                     yytok = (lexer.nextToken()
@@ -260,13 +246,30 @@ class Parser implements Tokens {
                     if (++yysp>=yyst.length) {
                         yyexpand();
                     }
-                case 40:
+                case 42:
                     switch (yytok) {
-                        case ENDINPUT:
-                            yyn = yyr1();
+                        case CHOOSE:
+                            yyn = 20;
+                            continue;
+                        case IDENT:
+                            yyn = 21;
                             continue;
                     }
-                    yyn = 59;
+                    yyn = 65;
+                    continue;
+
+                case 12:
+                    yyst[yysp] = 12;
+                    if (++yysp>=yyst.length) {
+                        yyexpand();
+                    }
+                case 43:
+                    switch (yytok) {
+                        case '}':
+                            yyn = yyr2();
+                            continue;
+                    }
+                    yyn = 65;
                     continue;
 
                 case 13:
@@ -278,106 +281,55 @@ class Parser implements Tokens {
                     if (++yysp>=yyst.length) {
                         yyexpand();
                     }
-                case 41:
+                case 44:
                     switch (yytok) {
-                        case INTEGER:
-                            yyn = 20;
+                        case ENDINPUT:
+                            yyn = yyr1();
                             continue;
                     }
-                    yyn = 59;
+                    yyn = 65;
                     continue;
 
                 case 14:
                     yyst[yysp] = 14;
-                    if (++yysp>=yyst.length) {
-                        yyexpand();
-                    }
-                case 42:
-                    switch (yytok) {
-                        case '[':
-                        case OR:
-                        case AND:
-                            yyn = yyr7();
-                            continue;
-                    }
-                    yyn = 59;
-                    continue;
-
-                case 15:
-                    yyst[yysp] = 15;
                     yysv[yysp] = (lexer.getSemantic()
                                  );
                     yytok = (lexer.nextToken()
                             );
-                    if (++yysp>=yyst.length) {
-                        yyexpand();
-                    }
-                case 43:
-                    switch (yytok) {
-                        case '[':
-                        case OR:
-                        case AND:
-                            yyn = yyr6();
-                            continue;
-                    }
-                    yyn = 59;
-                    continue;
-
-                case 16:
-                    yyst[yysp] = 16;
-                    if (++yysp>=yyst.length) {
-                        yyexpand();
-                    }
-                case 44:
-                    switch (yytok) {
-                        case AND:
-                            yyn = 8;
-                            continue;
-                        case '[':
-                        case OR:
-                            yyn = yyr8();
-                            continue;
-                    }
-                    yyn = 59;
-                    continue;
-
-                case 17:
-                    yyst[yysp] = 17;
                     if (++yysp>=yyst.length) {
                         yyexpand();
                     }
                 case 45:
                     switch (yytok) {
-                        case CHOOSE:
-                            yyn = 18;
-                            continue;
-                        case IDENT:
-                            yyn = 19;
+                        case INTEGER:
+                            yyn = 22;
                             continue;
                     }
-                    yyn = 59;
+                    yyn = 65;
                     continue;
 
-                case 18:
-                    yyst[yysp] = 18;
-                    yysv[yysp] = (lexer.getSemantic()
-                                 );
-                    yytok = (lexer.nextToken()
-                            );
+                case 15:
+                    yyst[yysp] = 15;
                     if (++yysp>=yyst.length) {
                         yyexpand();
                     }
                 case 46:
                     switch (yytok) {
-                        case '(':
-                            yyn = 22;
+                        case AND:
+                            yyn = 9;
+                            continue;
+                        case OR:
+                            yyn = 10;
+                            continue;
+                        case ')':
+                            yyn = 23;
                             continue;
                     }
-                    yyn = 59;
+                    yyn = 65;
                     continue;
 
-                case 19:
-                    yyst[yysp] = 19;
+                case 16:
+                    yyst[yysp] = 16;
                     yysv[yysp] = (lexer.getSemantic()
                                  );
                     yytok = (lexer.nextToken()
@@ -387,13 +339,67 @@ class Parser implements Tokens {
                     }
                 case 47:
                     switch (yytok) {
-                        case ']':
-                        case IDENT:
-                        case CHOOSE:
-                            yyn = yyr9();
+                        case '[':
+                        case OR:
+                        case ')':
+                        case AND:
+                            yyn = yyr6();
                             continue;
                     }
-                    yyn = 59;
+                    yyn = 65;
+                    continue;
+
+                case 17:
+                    yyst[yysp] = 17;
+                    if (++yysp>=yyst.length) {
+                        yyexpand();
+                    }
+                case 48:
+                    switch (yytok) {
+                        case '[':
+                        case OR:
+                        case ')':
+                        case AND:
+                            yyn = yyr7();
+                            continue;
+                    }
+                    yyn = 65;
+                    continue;
+
+                case 18:
+                    yyst[yysp] = 18;
+                    if (++yysp>=yyst.length) {
+                        yyexpand();
+                    }
+                case 49:
+                    switch (yytok) {
+                        case AND:
+                            yyn = 9;
+                            continue;
+                        case '[':
+                        case OR:
+                        case ')':
+                            yyn = yyr8();
+                            continue;
+                    }
+                    yyn = 65;
+                    continue;
+
+                case 19:
+                    yyst[yysp] = 19;
+                    if (++yysp>=yyst.length) {
+                        yyexpand();
+                    }
+                case 50:
+                    switch (yytok) {
+                        case CHOOSE:
+                            yyn = 20;
+                            continue;
+                        case IDENT:
+                            yyn = 21;
+                            continue;
+                    }
+                    yyn = 65;
                     continue;
 
                 case 20:
@@ -405,28 +411,33 @@ class Parser implements Tokens {
                     if (++yysp>=yyst.length) {
                         yyexpand();
                     }
-                case 48:
+                case 51:
                     switch (yytok) {
-                        case '}':
-                        case IDENT:
-                            yyn = yyr4();
+                        case '(':
+                            yyn = 25;
                             continue;
                     }
-                    yyn = 59;
+                    yyn = 65;
                     continue;
 
                 case 21:
                     yyst[yysp] = 21;
+                    yysv[yysp] = (lexer.getSemantic()
+                                 );
+                    yytok = (lexer.nextToken()
+                            );
                     if (++yysp>=yyst.length) {
                         yyexpand();
                     }
-                case 49:
+                case 52:
                     switch (yytok) {
                         case ']':
-                            yyn = 23;
+                        case IDENT:
+                        case CHOOSE:
+                            yyn = yyr10();
                             continue;
                     }
-                    yyn = 59;
+                    yyn = 65;
                     continue;
 
                 case 22:
@@ -438,13 +449,15 @@ class Parser implements Tokens {
                     if (++yysp>=yyst.length) {
                         yyexpand();
                     }
-                case 50:
+                case 53:
                     switch (yytok) {
+                        case '}':
+                        case '(':
                         case IDENT:
-                            yyn = 25;
+                            yyn = yyr4();
                             continue;
                     }
-                    yyn = 59;
+                    yyn = 65;
                     continue;
 
                 case 23:
@@ -456,14 +469,16 @@ class Parser implements Tokens {
                     if (++yysp>=yyst.length) {
                         yyexpand();
                     }
-                case 51:
+                case 54:
                     switch (yytok) {
-                        case '}':
-                        case IDENT:
-                            yyn = yyr5();
+                        case '[':
+                        case OR:
+                        case ')':
+                        case AND:
+                            yyn = yyr9();
                             continue;
                     }
-                    yyn = 59;
+                    yyn = 65;
                     continue;
 
                 case 24:
@@ -471,13 +486,13 @@ class Parser implements Tokens {
                     if (++yysp>=yyst.length) {
                         yyexpand();
                     }
-                case 52:
+                case 55:
                     switch (yytok) {
-                        case ')':
+                        case ']':
                             yyn = 26;
                             continue;
                     }
-                    yyn = 59;
+                    yyn = 65;
                     continue;
 
                 case 25:
@@ -489,16 +504,13 @@ class Parser implements Tokens {
                     if (++yysp>=yyst.length) {
                         yyexpand();
                     }
-                case 53:
+                case 56:
                     switch (yytok) {
                         case IDENT:
-                            yyn = 25;
-                            continue;
-                        case ')':
-                            yyn = yyr12();
+                            yyn = 28;
                             continue;
                     }
-                    yyn = 59;
+                    yyn = 65;
                     continue;
 
                 case 26:
@@ -510,15 +522,15 @@ class Parser implements Tokens {
                     if (++yysp>=yyst.length) {
                         yyexpand();
                     }
-                case 54:
+                case 57:
                     switch (yytok) {
-                        case ']':
+                        case '}':
+                        case '(':
                         case IDENT:
-                        case CHOOSE:
-                            yyn = yyr10();
+                            yyn = yyr5();
                             continue;
                     }
-                    yyn = 59;
+                    yyn = 65;
                     continue;
 
                 case 27:
@@ -526,22 +538,77 @@ class Parser implements Tokens {
                     if (++yysp>=yyst.length) {
                         yyexpand();
                     }
-                case 55:
+                case 58:
                     switch (yytok) {
                         case ')':
+                            yyn = 29;
+                            continue;
+                    }
+                    yyn = 65;
+                    continue;
+
+                case 28:
+                    yyst[yysp] = 28;
+                    yysv[yysp] = (lexer.getSemantic()
+                                 );
+                    yytok = (lexer.nextToken()
+                            );
+                    if (++yysp>=yyst.length) {
+                        yyexpand();
+                    }
+                case 59:
+                    switch (yytok) {
+                        case IDENT:
+                            yyn = 28;
+                            continue;
+                        case ')':
+                            yyn = yyr13();
+                            continue;
+                    }
+                    yyn = 65;
+                    continue;
+
+                case 29:
+                    yyst[yysp] = 29;
+                    yysv[yysp] = (lexer.getSemantic()
+                                 );
+                    yytok = (lexer.nextToken()
+                            );
+                    if (++yysp>=yyst.length) {
+                        yyexpand();
+                    }
+                case 60:
+                    switch (yytok) {
+                        case ']':
+                        case IDENT:
+                        case CHOOSE:
                             yyn = yyr11();
                             continue;
                     }
-                    yyn = 59;
+                    yyn = 65;
                     continue;
 
-                case 56:
+                case 30:
+                    yyst[yysp] = 30;
+                    if (++yysp>=yyst.length) {
+                        yyexpand();
+                    }
+                case 61:
+                    switch (yytok) {
+                        case ')':
+                            yyn = yyr12();
+                            continue;
+                    }
+                    yyn = 65;
+                    continue;
+
+                case 62:
                     return true;
-                case 57:
+                case 63:
                     yyerror("stack overflow");
-                case 58:
+                case 64:
                     return false;
-                case 59:
+                case 65:
                     yyerror("syntax error");
                     return false;
             }
@@ -565,13 +632,13 @@ class Parser implements Tokens {
         return 1;
     }
 
-    private int yyr11() { // actions : IDENT actions
+    private int yyr12() { // actions : IDENT actions
         { yyrv = new Cons<Ident>(((Ident)yysv[yysp-2]), ((Pair)yysv[yysp-1])); }
         yysv[yysp-=2] = yyrv;
         return yypactions();
     }
 
-    private int yyr12() { // actions : IDENT
+    private int yyr13() { // actions : IDENT
         { yyrv = new Cons<Ident>(((Ident)yysv[yysp-1])); }
         yysv[yysp-=1] = yyrv;
         return yypactions();
@@ -579,8 +646,8 @@ class Parser implements Tokens {
 
     private int yypactions() {
         switch (yyst[yysp-1]) {
-            case 22: return 24;
-            default: return 27;
+            case 25: return 27;
+            default: return 30;
         }
     }
 
@@ -602,10 +669,17 @@ class Parser implements Tokens {
         return yypcondition();
     }
 
+    private int yyr9() { // condition : '(' condition ')'
+        { yyrv = ((Condition)yysv[yysp-2]); }
+        yysv[yysp-=3] = yyrv;
+        return yypcondition();
+    }
+
     private int yypcondition() {
         switch (yyst[yysp-1]) {
-            case 9: return 16;
-            case 8: return 14;
+            case 10: return 18;
+            case 9: return 17;
+            case 8: return 15;
             default: return 4;
         }
     }
@@ -637,17 +711,17 @@ class Parser implements Tokens {
     private int yypdefs() {
         switch (yyst[yysp-1]) {
             case 3: return 6;
-            default: return 11;
+            default: return 12;
         }
     }
 
-    private int yyr9() { // action : IDENT
+    private int yyr10() { // action : IDENT
         { yyrv = new Simple(((Ident)yysv[yysp-1])); }
         yysv[yysp-=1] = yyrv;
         return yypaction();
     }
 
-    private int yyr10() { // action : CHOOSE '(' actions ')'
+    private int yyr11() { // action : CHOOSE '(' actions ')'
         { yyrv = new Choose(((Pair)yysv[yysp-2])); }
         yysv[yysp-=4] = yyrv;
         return yypaction();
@@ -655,8 +729,8 @@ class Parser implements Tokens {
 
     private int yypaction() {
         switch (yyst[yysp-1]) {
-            case 10: return 17;
-            default: return 21;
+            case 11: return 19;
+            default: return 24;
         }
     }
 
