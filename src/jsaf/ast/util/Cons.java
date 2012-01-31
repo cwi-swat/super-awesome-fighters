@@ -25,10 +25,7 @@ public class Cons<X extends ISemantic> extends Pair<X> {
 
 			@Override
 			public boolean hasNext() {
-				if (start) {
-					return true;
-				}
-				return tailIter.hasNext();
+				return start || tailIter.hasNext();
 			}
 
 			@Override

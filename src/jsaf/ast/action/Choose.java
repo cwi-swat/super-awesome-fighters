@@ -8,10 +8,9 @@ import jsaf.ast.util.Visitor;
 
 public class Choose extends Action {
 
-	private final List<Ident> actions;
+	private final List<Ident> actions = new ArrayList<Ident>();
 
 	public Choose(Pair<Ident> actions) {
-		this.actions = new ArrayList<Ident>();
 		for (Ident ident: actions) {
 			this.actions.add(ident);
 		}

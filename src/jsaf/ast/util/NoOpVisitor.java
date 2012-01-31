@@ -41,6 +41,9 @@ public abstract class NoOpVisitor implements Visitor {
 
 	@Override
 	public void visit(Behavior behavior) {
+		behavior.getGuard().accept(this);
+		behavior.getMove().accept(this);
+		behavior.getFight().accept(this);
 	}
 
 	@Override

@@ -13,14 +13,12 @@ public class Fighter extends ASTNode  {
 	private static final Integer DEFAULT_STRENGTH = 5;
 
 	private final String name;
-	private final List<Strength> strengths;
-	private final List<Behavior> behaviors;
+	private final List<Strength> strengths = new ArrayList<Strength>();
+	private final List<Behavior> behaviors = new ArrayList<Behavior>();
 	
 
 	public Fighter(Ident name, Pair<Def> defs) {
 		this.name = name.getName();
-		this.strengths = new ArrayList<Strength>();
-		this.behaviors = new ArrayList<Behavior>();
 		for (Def d: defs) {
 			d.addToFighter(this);
 		}
