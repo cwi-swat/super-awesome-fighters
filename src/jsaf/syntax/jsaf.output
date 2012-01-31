@@ -1,0 +1,227 @@
+// Output created by jacc on Tue Jan 31 16:14:16 CET 2012
+
+state 0 (entry on fighter)
+    $accept : _fighter $end
+
+    IDENT shift 2
+    . error
+
+    fighter goto 1
+
+state 1 (entry on fighter)
+    $accept : fighter_$end
+
+    $end accept
+    . error
+
+state 2 (entry on IDENT)
+    fighter : IDENT_'{' defs '}'    (1)
+
+    '{' shift 3
+    . error
+
+state 3 (entry on '{')
+    fighter : IDENT '{'_defs '}'    (1)
+    defs : _    (3)
+
+    IDENT shift 7
+    '}' reduce 3
+    . error
+
+    condition goto 4
+    def goto 5
+    defs goto 6
+
+state 4 (entry on condition)
+    condition : condition_AND condition    (7)
+    condition : condition_OR condition    (8)
+    def : condition_'[' action action ']'    (5)
+
+    AND shift 8
+    OR shift 9
+    '[' shift 10
+    . error
+
+state 5 (entry on def)
+    defs : def_defs    (2)
+    defs : _    (3)
+
+    IDENT shift 7
+    '}' reduce 3
+    . error
+
+    condition goto 4
+    def goto 5
+    defs goto 11
+
+state 6 (entry on defs)
+    fighter : IDENT '{' defs_'}'    (1)
+
+    '}' shift 12
+    . error
+
+state 7 (entry on IDENT)
+    condition : IDENT_    (6)
+    def : IDENT_'=' INTEGER    (4)
+
+    '=' shift 13
+    '[' reduce 6
+    OR reduce 6
+    AND reduce 6
+    . error
+
+state 8 (entry on AND)
+    condition : condition AND_condition    (7)
+
+    IDENT shift 15
+    . error
+
+    condition goto 14
+
+state 9 (entry on OR)
+    condition : condition OR_condition    (8)
+
+    IDENT shift 15
+    . error
+
+    condition goto 16
+
+state 10 (entry on '[')
+    def : condition '['_action action ']'    (5)
+
+    CHOOSE shift 18
+    IDENT shift 19
+    . error
+
+    action goto 17
+
+state 11 (entry on defs)
+    defs : def defs_    (2)
+
+    '}' reduce 2
+    . error
+
+state 12 (entry on '}')
+    fighter : IDENT '{' defs '}'_    (1)
+
+    $end reduce 1
+    . error
+
+state 13 (entry on '=')
+    def : IDENT '='_INTEGER    (4)
+
+    INTEGER shift 20
+    . error
+
+state 14 (entry on condition)
+    condition : condition_AND condition    (7)
+    condition : condition AND condition_    (7)
+    condition : condition_OR condition    (8)
+
+    '[' reduce 7
+    OR reduce 7
+    AND reduce 7
+    . error
+
+state 15 (entry on IDENT)
+    condition : IDENT_    (6)
+
+    '[' reduce 6
+    OR reduce 6
+    AND reduce 6
+    . error
+
+state 16 (entry on condition)
+    condition : condition_AND condition    (7)
+    condition : condition_OR condition    (8)
+    condition : condition OR condition_    (8)
+
+    AND shift 8
+    '[' reduce 8
+    OR reduce 8
+    . error
+
+state 17 (entry on action)
+    def : condition '[' action_action ']'    (5)
+
+    CHOOSE shift 18
+    IDENT shift 19
+    . error
+
+    action goto 21
+
+state 18 (entry on CHOOSE)
+    action : CHOOSE_'(' actions ')'    (10)
+
+    '(' shift 22
+    . error
+
+state 19 (entry on IDENT)
+    action : IDENT_    (9)
+
+    ']' reduce 9
+    IDENT reduce 9
+    CHOOSE reduce 9
+    . error
+
+state 20 (entry on INTEGER)
+    def : IDENT '=' INTEGER_    (4)
+
+    '}' reduce 4
+    IDENT reduce 4
+    . error
+
+state 21 (entry on action)
+    def : condition '[' action action_']'    (5)
+
+    ']' shift 23
+    . error
+
+state 22 (entry on '(')
+    action : CHOOSE '('_actions ')'    (10)
+
+    IDENT shift 25
+    . error
+
+    actions goto 24
+
+state 23 (entry on ']')
+    def : condition '[' action action ']'_    (5)
+
+    '}' reduce 5
+    IDENT reduce 5
+    . error
+
+state 24 (entry on actions)
+    action : CHOOSE '(' actions_')'    (10)
+
+    ')' shift 26
+    . error
+
+state 25 (entry on IDENT)
+    actions : IDENT_actions    (11)
+    actions : IDENT_    (12)
+
+    IDENT shift 25
+    ')' reduce 12
+    . error
+
+    actions goto 27
+
+state 26 (entry on ')')
+    action : CHOOSE '(' actions ')'_    (10)
+
+    ']' reduce 10
+    IDENT reduce 10
+    CHOOSE reduce 10
+    . error
+
+state 27 (entry on actions)
+    actions : IDENT actions_    (11)
+
+    ')' reduce 11
+    . error
+
+15 terminals, 6 nonterminals;
+12 grammar rules, 28 states;
+0 shift/reduce and 0 reduce/reduce conflicts reported.

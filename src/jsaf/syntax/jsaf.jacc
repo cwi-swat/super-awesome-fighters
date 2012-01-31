@@ -1,0 +1,72 @@
+%package jsaf.syntax
+%class Parser
+%interface Tokens
+%semantic ASTNode 
+%start fighter
+
+%token INTEGER IDENT
+%token AND OR CHOOSE '[' ']' '(' ')' '{' '}' '=' ','
+
+%left OR
+%left AND
+
+%type <Int> INTEGER
+%type <Ident> IDENT 
+
+%type <Fighter> fighter
+%type <Choose> action
+%type <Pair> actions
+%type <Pair> defs
+%type <Def> def
+%type <Condition> condition
+
+%{
+import jsaf.ast.*;
+import jsaf.ast.util.*;
+import jsaf.ast.cond.*;
+import jsaf.ast.action.*;
+%}
+
+%%
+
+ fighter: IDENT '{' defs '}' { result = new Fighter($1, $3); }
+        ;
+
+ defs: def defs	   { $$ = new Cons<Def>($1, $2);}
+     | /* empty */ { $$ = new Nil<Def>(); }
+     ;
+
+
+ def: IDENT '=' INTEGER { $$ = new Strength($1, $3); }
+    | condition '[' action action ']' { $$ = new Behavior($1, $3, $4); }
+    ;
+ 
+ condition: IDENT { $$ = new Atom($1); }
+          | condition AND condition { $$ = new And($1, $3); }
+          | condition OR condition { $$ = new Or($1, $3); }
+          ;
+ 
+ action: IDENT { $$ = new Choose(new Cons<Ident>($1)); }
+       | CHOOSE '(' actions ')' { $$ = new Choose($3); }
+       ;
+       
+ actions: IDENT actions { $$ = new Cons<Ident>($1, $2); }
+        | IDENT { $$ = new Cons<Ident>($1); }
+        ; 
+       
+%%
+private Lexer lexer; 
+
+private Fighter result;
+
+public Fighter getResult() {
+  return result;
+}
+
+public Parser(Lexer lexer) { 
+  this.lexer = lexer; 
+}
+
+private void yyerror(String msg) { 
+  System.err.println(msg); 
+}
