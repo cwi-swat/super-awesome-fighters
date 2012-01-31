@@ -4,9 +4,6 @@ import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertTrue;
 
-import java.io.File;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.Collections;
 import java.util.List;
 
@@ -15,20 +12,13 @@ import jsaf.ast.action.Ident;
 import jsaf.ast.fighter.Fighter;
 import jsaf.check.Check;
 import jsaf.check.Message;
-import jsaf.syntax.JSAF;
 
 import org.junit.Test;
 
 
-public class TestCheck {
+public class TestCheck extends Load {
 	
 	private static final List<Message> empty = Collections.emptyList();
-	
-	private Fighter load(String name) {
-		String subPath = "jsaf" + File.separator + "test" + File.separator +  name;
-		InputStream input = getClass().getClassLoader().getResourceAsStream(subPath);
-		return JSAF.parse(new InputStreamReader(input));
-	}
 	
 	@Test
 	public void testChicken() {

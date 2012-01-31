@@ -1,0 +1,10 @@
+precedence {
+  a and b and c [z z]
+  a or b or c [z z]
+  a and b or c [z z]
+  a or b and c [z z]
+  a and b or c and d [z z]
+  (a and b) or (c and d) [z z]
+  a or b and c or d [z z]
+  (a or b) and (c or d) [z z] 
+}
