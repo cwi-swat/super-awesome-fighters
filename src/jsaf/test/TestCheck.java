@@ -1,5 +1,6 @@
 package jsaf.test;
 
+import java.io.File;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Collections;
@@ -20,7 +21,8 @@ public class TestCheck {
 	private static final List<Message> empty = Collections.emptyList();
 	
 	private Fighter load(String name) {
-		InputStream input = getClass().getClassLoader().getResourceAsStream(name);
+		String subPath = "jsaf" + File.separator + "test" + File.separator +  name;
+		InputStream input = getClass().getClassLoader().getResourceAsStream(subPath);
 		return JSAF.parse(new InputStreamReader(input));
 	}
 	
@@ -53,5 +55,14 @@ public class TestCheck {
 	}
 
 
-	
+	@Test
+	public void testOutOfBounds() {
+		Fighter f = load("challenging-outofbounds.saf");
+		List<Message> errs = Check.check(f);
+		assertEquals(1, errs.size());
+		Message error = errs.get(0);
+		assertTrue(error instanceof jsaf.check.Error);
+		assertNotNull(error.getMessage().matches("out of bounds"));
+		assertEquals(f.getStrengths().get(0), error.getNode());
+	}
 }

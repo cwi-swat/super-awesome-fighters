@@ -16,4 +16,11 @@ public abstract class Message {
 		return message + " (" + node + ")";
 	}
 	
+	public ASTNode getNode() {
+		return node;
+	}
+	
+	public String getMessage() {
+		return message;
+	}
 }

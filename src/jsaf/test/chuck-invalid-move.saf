@@ -1,0 +1,9 @@
+chuck
+{
+  kickReach  = 1
+  punchReach = 1
+  punchPower = 9
+  kickPower  = 9
+  always [walk_twards punch_high]
+  near [jump kick_low]
+}
