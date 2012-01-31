@@ -10,13 +10,13 @@ import jsaf.ast.util.Visitor;
 
 public class Fighter extends ASTNode {
 
-	private final Ident name;
+	private final String name;
 	private final List<Strength> strengths;
 	private final List<Behavior> behaviors;
 	
 
 	public Fighter(Ident name, Pair<Def> defs) {
-		this.name = name;
+		this.name = name.getName();
 		this.strengths = new ArrayList<Strength>();
 		this.behaviors = new ArrayList<Behavior>();
 		for (Def d: defs) {
@@ -32,7 +32,7 @@ public class Fighter extends ASTNode {
 		behaviors.add(behavior);
 	}
 	
-	public Ident getName() {
+	public String getName() {
 		return name;
 	}
 	

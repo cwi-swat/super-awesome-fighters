@@ -1,8 +1,8 @@
 package jsaf.ast.util;
 
-import jsaf.ast.ASTNode;
+import jsaf.ast.ISemantic;
 
-public class Int extends ASTNode {
+public class Int implements ISemantic {
 
 	private final Integer value;
 
@@ -14,14 +14,4 @@ public class Int extends ASTNode {
 		return value;
 	}
 	
-	@Override
-	public String toString() {
-		return value.toString();
-	}
-
-	@Override
-	public void accept(Visitor visitor) {
-		visitor.visit(this);
-	}
-
 }

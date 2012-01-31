@@ -6,12 +6,12 @@ import jsaf.ast.util.Visitor;
 
 public class Strength extends Def {
 
-	private final Ident name;
-	private final Int value;
+	private final String name;
+	private final Integer value;
 
 	public Strength(Ident name, Int value) {
-		this.name = name;
-		this.value = value;
+		this.name = name.getName();
+		this.value = value.getValue();
 	}
 	
 	@Override
@@ -19,11 +19,11 @@ public class Strength extends Def {
 		fighter.addStrength(this);
 	}
 
-	public Ident getName() {
+	public String getName() {
 		return name;
 	}
 	
-	public Int getValue() {
+	public Integer getValue() {
 		return value;
 	}
 	

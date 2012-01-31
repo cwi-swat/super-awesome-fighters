@@ -5,19 +5,19 @@ import jsaf.ast.util.Visitor;
 
 public class Atom extends Condition {
 	
-	private final Ident name;
+	private final String name;
 
 	public Atom(Ident name) {
-		this.name = name;
+		this.name = name.getName();
 	}
 	
-	public Ident getName() {
+	public String getName() {
 		return name;
 	}
 	
 	@Override
 	public String toString() {
-		return getName().toString();
+		return getName();
 	}
 
 	@Override

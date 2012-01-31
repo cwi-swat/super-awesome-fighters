@@ -1,14 +1,11 @@
-// Output created by jacc on Tue Jan 31 16:28:35 CET 2012
+// Output created by jacc on Tue Jan 31 16:31:27 CET 2012
 
 package jsaf.syntax;
 
 import jsaf.ast.*;
+import jsaf.ast.fighter.*;
 import jsaf.ast.util.*;
 import jsaf.ast.cond.*;
-import jsaf.ast.fighter.Behavior;
-import jsaf.ast.fighter.Def;
-import jsaf.ast.fighter.Fighter;
-import jsaf.ast.fighter.Strength;
 import jsaf.ast.action.*;
 
 class Parser implements Tokens {

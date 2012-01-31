@@ -5,19 +5,19 @@ import jsaf.ast.util.Visitor;
 
 public class Simple extends Action {
 	
-	private final Ident name;
+	private final String name;
 
 	public Simple(Ident name) {
-		this.name = name;
+		this.name = name.getName();
 	}
 	
-	public Ident getName() {
+	public String getName() {
 		return name;
 	}
 	
 	@Override
 	public String toString() {
-		return getName().toString();
+		return getName();
 	}
 
 	@Override
