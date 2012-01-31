@@ -25,17 +25,15 @@ public class Check extends NoOpVisitor implements Config {
 
 	private final List<Message> messages;
 
-	private class ConditionChecker extends NoOpVisitor {
-		@Override
-		public void visit(Ident ident) {
-			if (!FIGHTS.contains(ident.getName())) {
-				addMessage(new Error("invalid fight", ident));
-			}
-		}
-	}
-
-
 	private class ActionChecker extends NoOpVisitor {
+		private final List<String> validActions;
+		private final String kind;
+
+		public ActionChecker(List<String> validActions, String kind) {
+			this.validActions = validActions;
+			this.kind = kind;
+		}
+		
 		@Override
 		public void visit(Choose choose) {
 			Set<String> seen = new HashSet<String>();
@@ -47,10 +45,7 @@ public class Check extends NoOpVisitor implements Config {
 				action.accept(this);
 			}
 		}
-	}
-
-
-	private class FightChecker extends ActionChecker {
+		
 		@Override
 		public void visit(Simple simple) {
 			checkFight(simple.getName(), simple);
@@ -62,25 +57,8 @@ public class Check extends NoOpVisitor implements Config {
 		}
 
 		private void checkFight(String name, ASTNode node) {
-			if (!FIGHTS.contains(name)) {
-				addMessage(new Error("invalid fight", node));
-			}
-		}
-	}
-
-	private class MoveChecker extends ActionChecker {
-		@Override
-		public void visit(Simple simple) {
-			checkMove(simple.getName(), simple);
-		}
-
-		public void visit(Ident ident) {
-			checkMove(ident.getName(), ident);
-		}
-
-		private void checkMove(String name, ASTNode node) {
-			if (!MOVES.contains(name)) {
-				addMessage(new Error("invalid move", node));
+			if (!validActions.contains(name)) {
+				addMessage(new Error("invalid " + kind, node));
 			}
 		}
 	}
@@ -89,25 +67,18 @@ public class Check extends NoOpVisitor implements Config {
 		this.messages = new ArrayList<Message>();
 	}
 
-	public void visit(Choose choose) {
-		for (Ident action: choose.getActions()) {
-			action.accept(new ConditionChecker());
-		}
-	}
-
 	@Override
 	public void visit(Atom atom) {
 		if (!ATOMS.contains(atom.getName())) {
 			addMessage(new Error("invalid condition atom", atom));
 		}
-
 	}
 
 	@Override
 	public void visit(Behavior behavior) {
 		behavior.getGuard().accept(this);
-		behavior.getFight().accept(new FightChecker());
-		behavior.getMove().accept(new MoveChecker());
+		behavior.getMove().accept(new ActionChecker(MOVES, "move"));
+		behavior.getFight().accept(new ActionChecker(FIGHTS, "fight"));
 	}
 
 	@Override
@@ -121,7 +92,8 @@ public class Check extends NoOpVisitor implements Config {
 	}
 
 	private boolean isInBounds(Strength strength){
-		return MIN_STRENGTH <= strength.getValue()  && strength.getValue() <= MAX_STRENGTH;
+		return MIN_STRENGTH <= strength.getValue()  
+				&& strength.getValue() <= MAX_STRENGTH;
 	}
 
 
