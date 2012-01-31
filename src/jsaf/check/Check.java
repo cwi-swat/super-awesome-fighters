@@ -10,6 +10,7 @@ import jsaf.ast.action.Choose;
 import jsaf.ast.action.Simple;
 import jsaf.ast.cond.Atom;
 import jsaf.ast.fighter.Behavior;
+import jsaf.ast.fighter.Fighter;
 import jsaf.ast.fighter.Strength;
 import jsaf.ast.util.NoOpVisitor;
 
@@ -25,10 +26,19 @@ public class Check extends NoOpVisitor {
 	
 	private static final List<String> STRENGTHS =
 			Arrays.asList("punchReach", "kickReach", "kickPower", "punchPower");
+
+	private static final Integer MIN_STRENGTH = 1;
+	private static final Integer MAX_STRENGTH = 10;
 	
 	
 	private final List<Message> messages;
 
+	public static List<Message> check(Fighter fighter) {
+		Check check = new Check();
+		fighter.accept(check);
+		return check.messages;
+	}
+	
 	private Check() {
 		this.messages = new ArrayList<Message>();
 	}
@@ -82,12 +92,18 @@ public class Check extends NoOpVisitor {
 		if (!STRENGTHS.contains(strength.getName())) {
 			addMessage(new Error("invalid strength", strength));
 		}
+		if (!isInBounds(strength)) {
+			addMessage(new Error("strength out of bounds", strength));
+		}
+	}
+
+	private boolean isInBounds(Strength strength){
+		return MIN_STRENGTH <= strength.getValue()  && strength.getValue() <= MAX_STRENGTH;
 	}
 
 
 	private void addMessage(Message message) {
 		messages.add(message);
 	}
-
 
 }
