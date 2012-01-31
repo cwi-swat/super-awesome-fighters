@@ -18,16 +18,28 @@ public class Lexer implements Tokens {
 		KEYWORDS.put("or", OR);
 	}
 	
+	private final Reader input;
 	private ISemantic yyval;
 	private int token;
-	private final Reader input;
 	private int c = ' ';
 	
 	public Lexer(Reader input) {
 		this.input = input;
 	}
+
+	public int nextToken() {
+		skipWhitespace();
+		return parseToken();
+	}
 	
+	public int getToken() {
+		return token;
+	}
 	
+	public ISemantic getSemantic() {
+		return yyval;
+	}
+
 	private void nextChar() {
 		if (c < 0) {
 			return;
@@ -36,50 +48,53 @@ public class Lexer implements Tokens {
 			c = input.read();
 		}
 		catch (IOException e) {
-			c = -1;
+			throw new RuntimeException(e);
 		}
 	}
 	
-	public int nextToken() {
-		for (;;) {
-			while (c == ' ' || c == '\t' || c == '\n' || c == '\r') {
-				nextChar();
-			}
-			
-			if (c < 0) {
-				return token = ENDINPUT;
-			}
-			
-			switch (c) {
-			    case '(':
-			    case ')': 
-			    case '[':
-			    case ']':
-			    case '=': 
-			    case '{':
-			    case '}': token = c; nextChar(); return token;
-			    default: {
-			    	if (Character.isDigit(c)) {
-			    		return parseInteger();
-			    	}
-			    	if (Character.isLetter(c)) {
-			    		StringBuilder sb = new StringBuilder();
-			    		do {
-			    			sb.append((char)c);
-			    			nextChar();
-			    		}
-			    		while (Character.isLetterOrDigit(c) || c == '_');
-			    		String name = sb.toString();
-			    		if (KEYWORDS.containsKey(name)) {
-			    			return token = KEYWORDS.get(name);
-			    		}
-						yyval = new Ident(name);
-			    		return token = IDENT;
-			    	}
-			    	return token = error;
-			    }
-			}
+	private int parseToken() {
+		if (c < 0) {
+			return token = ENDINPUT;
 		}
+		if (isDelimiter(c)) {
+			token = c; 
+			nextChar(); 
+			return token;
+		}
+		if (Character.isDigit(c)) {
+			return parseInteger();
+		}
+		if (Character.isLetter(c)) {
+			return parseIdentOrKeyword();
+		}
+		return token = error;
+	}
+
+	private boolean isDelimiter(int c) {
+		return c == '(' || c == ')' || c == '[' || c == ']'
+				|| c == '=' || c == '{' || c == '}';
+	}
+
+	private void skipWhitespace() {
+		while (c == ' ' || c == '\t' || c == '\n' || c == '\r') {
+			nextChar();
+		}
+	}
+
+
+	private int parseIdentOrKeyword() {
+		StringBuilder sb = new StringBuilder();
+		do {
+			sb.append((char)c);
+			nextChar();
+		}
+		while (Character.isLetterOrDigit(c) || c == '_');
+		String name = sb.toString();
+		if (KEYWORDS.containsKey(name)) {
+			return token = KEYWORDS.get(name);
+		}
+		yyval = new Ident(name);
+		return token = IDENT;
 	}
 
 
@@ -93,13 +108,5 @@ public class Lexer implements Tokens {
 		return token = INTEGER;
 	}
 	
-	public int getToken() {
-		return token;
-	}
-
-	public ISemantic getSemantic() {
-		return yyval;
-	}
-
 	
 }
