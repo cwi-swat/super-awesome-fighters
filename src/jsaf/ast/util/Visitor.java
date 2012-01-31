@@ -20,5 +20,4 @@ public interface Visitor {
 	public void visit(Strength strength);
 	public void visit(Fighter fighter);
 	public void visit(Ident ident);
-	public void visit(Int n);
 }

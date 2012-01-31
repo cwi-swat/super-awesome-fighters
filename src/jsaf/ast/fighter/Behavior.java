@@ -34,11 +34,6 @@ public class Behavior extends Def {
 	}
 	
 	@Override
-	public String toString() {
-		return getGuard() + " [" + getMove() + " " + getFight() + "]";
-	}
-
-	@Override
 	public void accept(Visitor visitor) {
 		visitor.visit(this);
 	}

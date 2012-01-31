@@ -64,8 +64,4 @@ public abstract class NoOpVisitor implements Visitor {
 	public void visit(Ident ident) {
 	}
 
-	@Override
-	public void visit(Int n) {
-	}
-
 }

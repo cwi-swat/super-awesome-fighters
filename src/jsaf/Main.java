@@ -1,15 +1,15 @@
 package jsaf;
 
-import java.io.InputStreamReader;
+import jsaf.test.Load;
 
-import jsaf.ast.fighter.Fighter;
-import jsaf.syntax.JSAF;
-
-public class Main {
+public class Main extends Load {
 	
 	public static void main(String[] args) {
-		Fighter pt = JSAF.parse(new InputStreamReader(System.in));
-		System.out.println(pt);
+		new Main().run();
+	}
+	
+	public void run() {
+		System.out.println(load("challenging.saf"));
 	}
 	
 }

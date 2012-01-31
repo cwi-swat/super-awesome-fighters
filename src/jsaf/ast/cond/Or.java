@@ -10,11 +10,6 @@ public class Or extends Connective {
 	}
 
 	@Override
-	public String toString() {
-		return getLhs() + " or " + getRhs();
-	}
-	
-	@Override
 	public void accept(Visitor visitor) {
 		visitor.visit(this);
 	}

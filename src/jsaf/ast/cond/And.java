@@ -10,11 +10,6 @@ public class And extends Connective {
 	}
 	
 	@Override
-	public String toString() {
-		return getLhs() + " and " + getRhs();
-	}
-
-	@Override
 	public void accept(Visitor visitor) {
 		visitor.visit(this);
 	}

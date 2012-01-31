@@ -20,9 +20,4 @@ public class Ident extends ASTNode {
 		visitor.visit(this);
 	}
 	
-	@Override
-	public String toString() {
-		return getName();
-	}
-
 }

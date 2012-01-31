@@ -15,11 +15,6 @@ public class Simple extends Action {
 	}
 	
 	@Override
-	public String toString() {
-		return getName();
-	}
-
-	@Override
 	public void accept(Visitor visitor) {
 		visitor.visit(this);
 	}

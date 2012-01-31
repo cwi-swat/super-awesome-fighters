@@ -21,18 +21,6 @@ public class Choose extends Action {
 	}
 	
 	@Override
-	public String toString() {
-		String s = "";
-		for (int i = 0; i < actions.size(); i++) {
-			s += actions.get(i);
-			if (i < actions.size() - 1) {
-				s += " ";
-			}
-		}
-		return "choose(" + s + ")";
-	}
-
-	@Override
 	public void accept(Visitor visitor) {
 		visitor.visit(this);
 	}

@@ -54,18 +54,6 @@ public class Fighter extends ASTNode  {
 	}
 	
 	@Override
-	public String toString() {
-		String s = getName() + " {\n";
-		for (Strength strength: getStrengths()) {
-			s += "\t" + strength + "\n";
-		}
-		for (Behavior behavior: getBehaviors()) {
-			s += "\t" + behavior + "\n";
-		}
-		return s + "}";
-	}
-	
-	@Override
 	public void accept(Visitor visitor) {
 		visitor.visit(this);
 	}
