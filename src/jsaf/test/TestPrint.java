@@ -70,7 +70,7 @@ public class TestPrint extends Load {
 	}
 	
 	@Test
-	public void testPrecendence() {
+	public void testPrecedence() {
 		testToString("precedence.saf");
 	}
 	

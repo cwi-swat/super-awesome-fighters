@@ -16,9 +16,4 @@ public abstract class Condition extends ASTNode {
 		return false;
 	}
 	
-	public boolean needBracket(Atom atom) {
-		return false;
-	}
-
-
 }

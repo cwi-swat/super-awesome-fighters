@@ -9,7 +9,6 @@ import jsaf.ast.action.Simple;
 import jsaf.ast.cond.And;
 import jsaf.ast.cond.Atom;
 import jsaf.ast.cond.Condition;
-import jsaf.ast.cond.Connective;
 import jsaf.ast.cond.Or;
 import jsaf.ast.fighter.Behavior;
 import jsaf.ast.fighter.Fighter;
