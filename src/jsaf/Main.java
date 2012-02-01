@@ -17,6 +17,7 @@ public class Main extends Load {
 		for (Message m: Check.check(f)) {
 			System.out.println(m);
 		}
+		System.out.println(load("precedence.saf"));
 	}
 	
 }

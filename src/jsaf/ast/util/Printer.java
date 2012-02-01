@@ -8,6 +8,8 @@ import jsaf.ast.action.Ident;
 import jsaf.ast.action.Simple;
 import jsaf.ast.cond.And;
 import jsaf.ast.cond.Atom;
+import jsaf.ast.cond.Condition;
+import jsaf.ast.cond.Connective;
 import jsaf.ast.cond.Or;
 import jsaf.ast.fighter.Behavior;
 import jsaf.ast.fighter.Fighter;
@@ -47,16 +49,37 @@ public class Printer implements Visitor {
 
 	@Override
 	public void visit(And and) {
-		and.getLhs().accept(this);
+		bracket(and.getLhs(), and);
 		builder.append(" and ");
-		and.getRhs().accept(this);
+		bracket(and.getRhs(), and);
 	}
-
+	
 	@Override
 	public void visit(Or or) {
-		or.getLhs().accept(this);
+		bracket(or.getLhs(), or);
 		builder.append(" or ");
-		or.getRhs().accept(this);		
+		bracket(or.getRhs(), or);
+	}
+
+	// These two methods: truly unfortunate.
+	private void bracket(Condition cond, And parent) {
+		if (cond.needBracket(parent)) {
+			builder.append("(");
+		}
+		cond.accept(this);
+		if (cond.needBracket(parent)) {
+			builder.append(")");
+		}
+	}
+	
+	private void bracket(Condition cond, Or parent) {
+		if (cond.needBracket(parent)) {
+			builder.append("(");
+		}
+		cond.accept(this);
+		if (cond.needBracket(parent)) {
+			builder.append(")");
+		}
 	}
 
 	@Override

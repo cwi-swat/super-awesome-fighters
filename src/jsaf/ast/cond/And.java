@@ -24,4 +24,11 @@ public class And extends Connective {
 				 getRhs().equals(((And)obj).getRhs()); 
 	}
 
+	@Override
+	public boolean needBracket(And and) {
+		if (and.getRhs() == this) {
+			return true;
+		}
+		return false;
+	}
 }

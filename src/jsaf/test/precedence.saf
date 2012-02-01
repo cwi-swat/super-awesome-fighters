@@ -7,4 +7,6 @@ precedence {
   (a and b) or (c and d) [z z]
   a or b and c or d [z z]
   (a or b) and (c or d) [z z] 
+  a and (b and (c and d)) [z z] 
+  a or (b or (c or d)) [z z] 
 }

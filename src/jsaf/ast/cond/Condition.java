@@ -8,4 +8,17 @@ public abstract class Condition extends ASTNode {
 		return false;
 	}
 	
+	public boolean needBracket(And and) {
+		return false;
+	}
+
+	public boolean needBracket(Or or) {
+		return false;
+	}
+	
+	public boolean needBracket(Atom atom) {
+		return false;
+	}
+
+
 }

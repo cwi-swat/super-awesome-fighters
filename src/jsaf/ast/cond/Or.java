@@ -22,6 +22,20 @@ public class Or extends Connective {
 		return getLhs().equals(((Or)obj).getLhs()) &&
 				 getRhs().equals(((Or)obj).getRhs()); 
 	}
+	
+	@Override
+	public boolean needBracket(And and) {
+		return true;
+	}
+	
+	@Override
+	public boolean needBracket(Or or) {
+		if (or.getRhs() == this) {
+			return true;
+		}
+		return false;
+	}
+
 
 
 }
