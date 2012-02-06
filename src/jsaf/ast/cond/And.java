@@ -1,8 +1,6 @@
 package jsaf.ast.cond;
 
-import jsaf.ast.action.Choose;
 import jsaf.ast.util.Visitor;
-
 
 public class And extends Connective {
 

@@ -48,15 +48,15 @@ public class Check extends NoOpVisitor implements Config {
 		
 		@Override
 		public void visit(Simple simple) {
-			checkFight(simple.getName(), simple);
+			checkAction(simple.getName(), simple);
 		}
 
 		@Override
 		public void visit(Ident ident) {
-			checkFight(ident.getName(), ident);
+			checkAction(ident.getName(), ident);
 		}
 
-		private void checkFight(String name, ASTNode node) {
+		private void checkAction(String name, ASTNode node) {
 			if (!validActions.contains(name)) {
 				addMessage(new Error("invalid " + kind, node));
 			}

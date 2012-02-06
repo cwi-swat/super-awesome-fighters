@@ -1,7 +1,6 @@
 package jsaf.ast.fighter;
 
 import jsaf.ast.action.Action;
-import jsaf.ast.cond.And;
 import jsaf.ast.cond.Condition;
 import jsaf.ast.util.Visitor;
 
