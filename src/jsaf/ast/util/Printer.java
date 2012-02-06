@@ -16,7 +16,7 @@ import jsaf.ast.fighter.Strength;
 
 public class Printer implements Visitor {
 	
-	public static <X extends ASTNode> String print(X node) {
+	public static <Node extends ASTNode> String print(Node node) {
 		Printer printer = new Printer();
 		node.accept(printer);
 		return printer.builder.toString();

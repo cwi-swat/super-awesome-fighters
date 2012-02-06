@@ -6,6 +6,8 @@ import java.util.List;
 import jsaf.ast.util.Pair;
 import jsaf.ast.util.Visitor;
 
+// TODO: allow nesting of chooses and get rid of Ident in AST hierarchy.
+
 public class Choose extends Action {
 
 	private final List<Ident> actions = new ArrayList<Ident>();
